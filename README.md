@@ -12,3 +12,6 @@ devtools::install_github("horaciochacon/ENDES.PE")
 
 ## Uso
 
+## Información adicional
+
+## Licencia
