@@ -10,7 +10,7 @@
 #'
 #' @export consulta_endes
 
-consulta_endes <- function(periodo, codigo_modulo, base, guardar = FALSE, ruta) {
+consulta_endes <- function(periodo, codigo_modulo, base, guardar = FALSE, ruta = "") {
   # Generamos dos objetos temporales: un archivo y una carpeta 
   temp <- tempfile() ; tempdir <- tempdir()
   
@@ -33,7 +33,7 @@ consulta_endes <- function(periodo, codigo_modulo, base, guardar = FALSE, ruta) 
   
   # Elegimos entre guardar los archivos o pasarlos directamente a un objeto
   if(guardar == TRUE) {
-    unzip(temp,files = archivos$Name,exdir = paste(getwd(),ruta,sep = "/"))
+    unzip(temp, files = archivos$Name, exdir = paste(getwd(), "/", ruta, sep = ""))
   } else {
     read.spss(unzip(temp, files = archivos$Name, exdir = tempdir),to.data.frame = T)
   }
