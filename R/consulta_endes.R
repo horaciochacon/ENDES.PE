@@ -10,7 +10,7 @@
 #'
 #' @export consulta_endes
 
-consulta_endes <- function(periodo, codigo_modulo, base, guardar = TRUE, ruta) {
+consulta_endes <- function(periodo, codigo_modulo, base, guardar = FALSE, ruta) {
   # Generamos dos objetos temporales: un archivo y una carpeta 
   temp <- tempfile() ; tempdir <- tempdir()
   
