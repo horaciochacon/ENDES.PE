@@ -1,12 +1,12 @@
-#' @title Importa bases de datos de la ENDES
+#' @title consulta_endes
 #'
-#' @description Paquete que permite importar bases de datos de ENDES
+#' @description Funcion para extraer bases de datos de la Encuesta Nacional Demografica y de Salud familiar.
 #'
-#' @param periodo, codigo_modulo, base
+#' @param periodo,codigo_modulo,base,guardar,ruta
 #'
-#' @return data.frame
+#' @return archivo .sav o Data Frame (Segun parametro guardar)
 #'
-#' @examples consulta_endes(periodo = 2012,codigo_modulo = '64',base = 'RECH1')
+#' @examples consulta_endes(periodo = 2012,codigo_modulo = '64',base = 'RECH1', guardar = F)
 #'
 #' @export consulta_endes
 

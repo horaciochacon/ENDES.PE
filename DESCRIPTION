@@ -10,3 +10,4 @@ Encoding: UTF-8
 LazyData: true
 Imports:
   foreign, stringr
+RoxygenNote: 6.1.0
