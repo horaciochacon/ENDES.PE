@@ -1,12 +1,11 @@
-Package: DHS.PE
+Package: ENDES.PE
 Type: Package
-Title: Importador de Base de Datos ENDES - PERU (EN)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Title: Importador de Base de Datos ENDES - PERU (ES)
+Version: 0.2.0
+Author: Horacio Chacón-Torrico
+Maintainer: Horacio Chacón-Torrico <horaciochacon89@gmail.com>
+Description: Paquete con una serie de funciones utiles para manipular, extraer y descargar la base de datos de la Encuesta Nacional Demográfica y de Salud Familiar.
+License: GNU GPL V3
 Encoding: UTF-8
 LazyData: true
 Imports:
