@@ -32,12 +32,14 @@ Datos <- consulta_endes(periodo = 2012, codigo_modulo = 64, base = "RECH1", guar
 
 ## Información adicional
 
-Para mayor información revisar 
+Para mayor información revisar la documentación de la ENDES en la página de INEI.
+
+Pronto nuevas funciones para el manejo de los datos de la ENDES...
 
 ## Contacto
 
-Horacio Chacón-Torrico
-horacio.chacon.t@upch.pe
+* Horacio Chacón-Torrico
+* horacio.chacon.t@upch.pe
 
 
 
