@@ -1,6 +1,6 @@
 # ENDES.PE
 
-ENDES.PE es un paquete de manejo y obtención de información de la Encuesta Demográfica y de Salud Familiar del Perú. Este paquete permite la descarga de infromación desde la web de [INEI] (http://iinei.inei.gob.pe/microdatos/). 
+ENDES.PE es un paquete de manejo y obtención de información de la Encuesta Demográfica y de Salud Familiar del Perú. Este paquete permite la descarga de infromación desde la web de [INEI](http://iinei.inei.gob.pe/microdatos/). 
 
 ## Instalación
 
