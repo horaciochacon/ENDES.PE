@@ -18,7 +18,7 @@ La función **consulta_endes()** descarga la información de la web de [INEI](ht
 2. *codigo_modulo:* El codigo del módulo de la encuesta según la web de INEI (por ejemplo "64","65","413", etc.)
 3. *base:* La base de datos específica que se quiere descargar (por ejemplo "RECH1","RECH0", etc.)
 4. *guardar:* Si se desea descargar el archivo .sav o se quiere cargar como data frame (usando read.spss del paquete *foreign*)
-5. *ruta:* Si guardar es TRUE cual será la ruta donde se descargará. Esta ruta parte del workind directory
+5. *ruta:* Si guardar es TRUE cual será la ruta donde se descargará. Esta es la ruta a partir del working directory (/working/directory/**ruta**
 
 ### Ejemplo
 
