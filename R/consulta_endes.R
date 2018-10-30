@@ -30,13 +30,12 @@ consulta_endes <- function(periodo, codigo_modulo, base, guardar = FALSE, ruta =
   archivos <- unzip(temp,list = T)
   archivos <- archivos[str_detect(archivos$Name, base) == TRUE,]
   
-  
   # Elegimos entre guardar los archivos o pasarlos directamente a un objeto
   if(guardar == TRUE) {
     unzip(temp, files = archivos$Name, exdir = paste(getwd(), "/", ruta, sep = ""))
     print(paste("Archivos descargados en: ", getwd(), "/", ruta, sep = ""))
   } else {
-    read.spss(unzip(temp, files = archivos$Name, exdir = tempdir),to.data.frame = T)
+    read_sav(unzip(temp, files = archivos$Name, exdir = tempdir), encoding = 'UTF-8')
   }
 }
 
