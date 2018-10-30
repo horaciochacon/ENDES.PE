@@ -38,7 +38,7 @@ consulta_endes <- function(periodo, codigo_modulo, base, guardar = FALSE, ruta =
     endes <- read_sav(unzip(temp, files = archivos$Name, exdir = tempdir), encoding = 'UTF-8')
     nombres <- toupper(colnames(endes))
     colnames(endes) <- nombres
-    filas <- which(str_detect(colnames(endes),".X"))
+    filas <- which(str_detect(colnames(endes),".x"))
     colnames(endes)[filas] <- str_sub(colnames(endes)[3],1,str_length(colnames(endes)[3])-2)
     endes
   }
