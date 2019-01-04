@@ -4,7 +4,8 @@
 \alias{consulta_endes}
 \title{consulta_endes}
 \usage{
-consulta_endes(periodo, codigo_modulo, base, guardar = TRUE, ruta)
+consulta_endes(periodo, codigo_modulo, base, guardar = FALSE,
+  ruta = "")
 }
 \arguments{
 \item{periodo, codigo_modulo, base, guardar, ruta}{}

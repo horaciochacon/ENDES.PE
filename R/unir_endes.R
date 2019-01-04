@@ -32,15 +32,15 @@ unir_endes <- function(base1, base2, tipo_union = "individual") {
     base2 <- rename(base1, QSNUMERO = HVIDX)
   }
   
-  if(tipo_union = "individual")  {
+  if(tipo_union == "individual")  {
     left_join(base1,base2, by = c("HHID","QSNUMERO"))
   } 
   
-  else if(tipo_union = "hogar") {
+  else if(tipo_union == "hogar") {
     left_join(base1,base2, by = "HHID")
   }
   
   else {
-    print("tipo_union inválida, ingrese \"individual\" u \"hogar\"")
+    print("tipo_union inválida, ingrese 'individual' u 'hogar'")
   }
 }
