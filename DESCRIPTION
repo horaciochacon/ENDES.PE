@@ -9,5 +9,9 @@ License: GNU GPL V3
 Encoding: UTF-8
 LazyData: true
 Imports:
-  haven, stringr
+  haven (>= 1.0),
+  stringr (>= 1.0)
+Depends:
+  haven (>= 1.0),
+  stringr (>= 1.0)
 RoxygenNote: 6.1.1
