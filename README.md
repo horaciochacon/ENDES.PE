@@ -10,7 +10,7 @@ Para instalar el paquete en R por medio del repositorio en [Github](https://gith
 devtools::install_github("horaciochacon/ENDES.PE")
 ```
 
-## Uso
+## Uso de consulta_endes()
 
 La función **consulta_endes()** descarga la información de la web de [INEI](http://iinei.inei.gob.pe/microdatos/) en formato .sav. Los argumentos necesarios son:
 
@@ -26,9 +26,33 @@ La función **consulta_endes()** descarga la información de la web de [INEI](ht
 # Guardando la base de datos en el la carpeta "Data" del area de trabajo (working directory)
 consulta_endes(periodo = 2015, codigo_modulo = 64, base = "RECH1", guardar = TRUE, ruta = "Data")
 
+# Cargando las base de datos 
+
+salud     <- consulta_endes(periodo = 2017, codigo_modulo = 414, base = "CSALUD01", guardar = FALSE)
+persona   <- consulta_endes(periodo = 2017, codigo_modulo = 64, base = "RECH1", guardar = FALSE)
+vivienda  <- consulta_endes(periodo = 2017, codigo_modulo = 65, base = "RECH23", guardar = FALSE)
+hogar     <- consulta_endes(periodo = 2017, codigo_modulo = 64, base = "RECH0", guardar = FALSE)
+
+```
+
+## Uso de unir_endes()
+
+La función **unir_endes()** permite la unión (tipo left_join) de dos bases de datos de la ENDES. Los argumentos de la función son:
+
+1. *base1:* Base de datos número 1.
+2. *base2:* Base de datos número 2.
+3. *tipo_union:* Si el argmento es "individual" la unión se hace al nivel de individuo, si el argumento es "hogar", la unión se realiza a nivel de hogar.
+
+### Ejemplo
+
+```s
+# Utilizando las bases del ejemplo anterior unimos base de personas ("individual")
+union_individios <- unir_endes(base1 )
+
 # Cargando la base de datos en el Data frame "Datos"
 Datos <- consulta_endes(periodo = 2012, codigo_modulo = 64, base = "RECH1", guardar = FALSE)
 ```
+
 
 ## Información adicional
 
