@@ -1,10 +1,10 @@
 # ENDES.PE
 
-ENDES.PE es un paquete de manejo y obtención de información de la Encuesta Demográfica y de Salud Familiar del Perú. Este paquete permite la descarga de las Bases de Datos de la ENDES desde el portal Microdatos del [INEI](http://iinei.inei.gob.pe/microdatos/). 
+ENDES.PE es un paquete de manejo y obtención de información de la Encuesta Demográfica y de Salud Familiar del Perú. Este paquete permite la descarga de las bases de datos de la ENDES desde el portal Microdatos del [INEI](http://iinei.inei.gob.pe/microdatos/). 
 
 ## Instalación
 
-Para instalar el paquete en R por medio del repositorio en [Github](https://github.com/horaciochacon/ENDES.PE) ejecutar el comando:
+Para instalar el paquete en R por medio del repositorio en [GitHub](https://github.com/horaciochacon/ENDES.PE) ejecutar el comando:
 
 ```s
 devtools::install_github("horaciochacon/ENDES.PE")
@@ -23,7 +23,7 @@ La función **consulta_endes()** descarga la información de la web de [INEI](ht
 ### Ejemplo
 
 ```s
-# Guardando la base de datos en el la carpeta "Data" del area de trabajo (working directory)
+# Guardando la base de datos en la carpeta "Data" del área de trabajo (working directory)
 consulta_endes(periodo = 2015, codigo_modulo = 64, base = "RECH1", guardar = TRUE, ruta = "Data")
 
 # Cargando las base de datos 
@@ -41,7 +41,7 @@ La función **unir_endes()** permite la unión (tipo [left_join](https://en.wiki
 
 1. *base1:* Base de datos número 1.
 2. *base2:* Base de datos número 2.
-3. *tipo_union:* Si el argmento es "individual" la unión se hace al nivel de individuo, si el argumento es "hogar", la unión se realiza a nivel de hogar.
+3. *tipo_union:* Si el argumento es "individual" la unión se hace al nivel de individuo, si el argumento es "hogar", la unión se realiza a nivel de hogar.
 
 ### Ejemplo
 
