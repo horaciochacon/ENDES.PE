@@ -32,11 +32,11 @@ unir_endes <- function(base1, base2, tipo_union = "individual") {
     base2 <- rename(base1, QSNUMERO = HVIDX)
   }
   if("HC0"  %in% names(base1)) {
-    base1 <- mutate(base1, QSNUMERO = as.numeric(HC0))
+    base1 <- rename(base1, QSNUMERO = HC0)
   }
   
   if("HC0"  %in% names(base2)) {
-    base2 <- mutate(base1, QSNUMERO = as.numeric(HC0))
+    base2 <- rename(base1, QSNUMERO = HC0)
   }
   
   if(tipo_union == "individual")  {
