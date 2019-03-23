@@ -29,14 +29,14 @@ unir_endes <- function(base1, base2, tipo_union = "individual") {
   }
   
   if("HVIDX"  %in% names(base2)) {
-    base2 <- rename(base1, QSNUMERO = HVIDX)
+    base2 <- rename(base2, QSNUMERO = HVIDX)
   }
   if("HC0"  %in% names(base1)) {
     base1 <- rename(base1, QSNUMERO = HC0)
   }
   
   if("HC0"  %in% names(base2)) {
-    base2 <- rename(base1, QSNUMERO = HC0)
+    base2 <- rename(base2, QSNUMERO = HC0)
   }
   
   if(tipo_union == "individual")  {
