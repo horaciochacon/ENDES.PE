@@ -24,12 +24,19 @@ unir_endes <- function(base1, base2, tipo_union = "individual") {
              QSNUMERO = as.numeric(str_sub(CASEID,-2,-1)))
   }
   
-  if(c("HVIDX","HC0")  %in% names(base1)) {
+  if("HVIDX"  %in% names(base1)) {
     base1 <- rename(base1, QSNUMERO = HVIDX)
   }
   
-  if(c("HVIDX","HC0")  %in% names(base2)) {
+  if("HVIDX"  %in% names(base2)) {
     base2 <- rename(base1, QSNUMERO = HVIDX)
+  }
+  if("HC0"  %in% names(base1)) {
+    base1 <- rename(base1, HC0 = HVIDX)
+  }
+  
+  if("HC0"  %in% names(base2)) {
+    base2 <- rename(base1, HC0 = HVIDX)
   }
   
   if(tipo_union == "individual")  {
