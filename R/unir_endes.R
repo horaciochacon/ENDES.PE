@@ -36,7 +36,7 @@ unir_endes <- function(base1, base2, tipo_union = "individual") {
   }
   
   if("HC0"  %in% names(base2)) {
-    base2 <- rename(base1, QSNUMERO = HC0)
+    base2 <- rename(base2, QSNUMERO = HC0)
   }
   
   if(tipo_union == "individual")  {
