@@ -17,6 +17,6 @@ archivo .sav o Data Frame (Segun parametro guardar)
 Funcion para extraer bases de datos de la Encuesta Nacional Demografica y de Salud familiar.
 }
 \examples{
-consulta_endes(periodo = 2012,codigo_modulo = '64',base = 'RECH1', guardar = F)
+consulta_endes(periodo = 2012,codigo_modulo = '64',base = 'RECH1', guardar = FALSE)
 
 }
