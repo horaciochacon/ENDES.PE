@@ -37,6 +37,11 @@ consulta_endes <- function(periodo, codigo_modulo, base, guardar = FALSE, ruta =
   if(guardar == TRUE) {
     unzip(temp, files = archivos$Name, exdir = paste(getwd(), "/", ruta, sep = ""))
     print(paste("Archivos descargados en: ", getwd(), "/", ruta, sep = ""))
+  } else if (periodo == 2014) {
+    endes <- read_sav(unzip(temp, files = archivos$Name, exdir = tempdir))
+    nombres <- toupper(colnames(endes))
+    colnames(endes) <- nombres
+    endes
   } else {
     endes <- read_sav(unzip(temp, files = archivos$Name, exdir = tempdir), encoding = 'UTF-8')
     nombres <- toupper(colnames(endes))
