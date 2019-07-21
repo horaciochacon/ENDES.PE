@@ -7,11 +7,11 @@ Maintainer: Horacio Chacón-Torrico <horaciochacon89@gmail.com>
 Description: Paquete con una serie de funciones utiles para manipular, extraer y descargar la base de datos de la Encuesta Nacional Demográfica y de Salud Familiar.
 License: GNU GPL V3
 Encoding: UTF-8
-LazyData: true
+LazyData: false
 Imports:
-  haven (>= 1.0),
+  haven (>= 2.0),
   stringr (>= 1.0)
 Depends:
-  haven (>= 1.0),
+  haven (>= 2.0),
   stringr (>= 1.0)
 RoxygenNote: 6.1.1
