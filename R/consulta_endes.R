@@ -10,7 +10,7 @@
 #'
 #' @export consulta_endes
 
-consulta_endes <- function(periodo, codigo_modulo, base, guardar = FALSE, ruta = "") {
+consulta_endes <- function(periodo, codigo_modulo, base, guardar = FALSE, ruta = "", codificacion=NULL) {
   # Generamos dos objetos temporales: un archivo y una carpeta 
   temp <- tempfile() ; tempdir <- tempdir()
   
@@ -43,7 +43,7 @@ consulta_endes <- function(periodo, codigo_modulo, base, guardar = FALSE, ruta =
     colnames(endes) <- nombres
     endes
   } else {
-    endes <- read_sav(unzip(temp, files = archivos$Name, exdir = tempdir), encoding = 'UTF-8')
+    endes <- read_sav(unzip(temp, files = archivos$Name, exdir = tempdir), encoding = codificacion)
     nombres <- toupper(colnames(endes))
     colnames(endes) <- nombres
     endes
