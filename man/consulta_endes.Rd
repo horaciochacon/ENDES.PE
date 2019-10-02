@@ -5,10 +5,10 @@
 \title{consulta_endes}
 \usage{
 consulta_endes(periodo, codigo_modulo, base, guardar = FALSE,
-  ruta = "")
+  ruta = "", codificacion = NULL)
 }
 \arguments{
-\item{periodo, codigo_modulo, base, guardar, ruta}{}
+\item{periodo, codigo_modulo, base, guardar, ruta, codificacion}{}
 }
 \value{
 archivo .sav o Data Frame (Segun parametro guardar)
