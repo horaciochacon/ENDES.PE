@@ -21,5 +21,6 @@ Depends:
 RoxygenNote: 6.1.1
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    srvyr
 VignetteBuilder: knitr
