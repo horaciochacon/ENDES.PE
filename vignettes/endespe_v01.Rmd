@@ -1,0 +1,214 @@
+---
+title: "endespe_v01"
+author: "Andree Valle Campos"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{endespe_v01}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# paquetes
+
+```{r setup}
+library(ENDES.PE)
+library(srvyr)
+library(tidyverse)
+theme_set(theme_bw())
+```
+
+# importar base de datos
+
+```{r}
+year <- 2018
+
+#household
+hogar <- consulta_endes(periodo = year, 
+                        codigo_modulo = 64, 
+                        base = "RECH0", 
+                        guardar = FALSE, 
+                        codificacion = NULL) #%>% as_factor()
+
+vivienda <- consulta_endes(periodo = year, codigo_modulo = 65, base = "RECH23", guardar = FALSE, codificacion = NULL)
+salud <- consulta_endes(periodo = year, codigo_modulo = 414, base = "CSALUD01", guardar = FALSE, codificacion = NULL)
+
+#subject
+persona <- consulta_endes(periodo = year, codigo_modulo = 64, base = "RECH1", guardar = FALSE, codificacion = NULL)
+educacion <- consulta_endes(periodo = year, codigo_modulo = 64, base = "RECH4", guardar = FALSE, codificacion = NULL)
+mujer <- consulta_endes(periodo = year, codigo_modulo = 74, base = "RECH5", guardar = FALSE, codificacion = NULL)
+
+#household
+anemia <- consulta_endes(periodo = year, codigo_modulo = 74, base = "RECH6", guardar = FALSE, codificacion = NULL)
+
+```
+
+# generar diccionarios de variables
+
+```{r}
+diccionario_encuesta(hogar)
+# diccionario_encuesta(vivienda)
+# diccionario_encuesta(salud)
+# diccionario_encuesta(persona)
+# diccionario_encuesta(educacion)
+# diccionario_encuesta(anemia)
+# diccionario_encuesta(mujer)
+```
+
+# unir bases
+
+```{r}
+# unimos base de personas ("individual")
+union_individuo <- unir_endes(base1 = persona, 
+                              base2 = salud, 
+                              tipo_union = "individual")
+# unimos base de Hogar y vivienda ("hogar") 
+union_vivienda <- unir_endes(base1 = hogar, 
+                             base2 = vivienda, 
+                             tipo_union = "hogar") %>% 
+  unir_endes(base1 = .,
+             base2 = mujer,
+             tipo_union = "hogar")
+```
+
+# crear cronicas
+
+```{r}
+union_individuo %>% count(QSRESINF)
+union_individuo %>% count(QS902)
+```
+
+```{r}
+final02_db <- unir_endes(base1 = union_vivienda,
+                         base2 = union_individuo,
+                         tipo_union = "hogar") %>% 
+  #filtrar por cuestionario salud
+  filter(QSRESINF == 1) %>% 
+  #crear variables
+  mutate(
+    
+    #hipertension
+    PAMS = (QS905S+QS903S)/2, # Obtenemos la PAM sistólica de dos mediciones
+    PAMD = (QS905D+QS903D)/2, # Obtenemos la PAM diastólica de dos mediciones
+    HIPERTENSION  =  (PAMS>=140) | (PAMD>=90), # Definimos el criterio de HTA
+    
+    #obesidad
+    PESO = ifelse(QS902 == 1 & (QS900 >= 1 & QS900 < 999), QS900,
+                  ifelse(QS902 == 4, HA2/10, NA)),
+    TALLA = ifelse(QS902 == 1 & (QS901 >= 1 & QS901 < 999), QS901,
+                   ifelse(QS902 == 4, HA3/10, NA)),
+    ha13tmp = case_when(HA13 == 0 ~ 1,
+                        HA13 == 3 ~ 2,
+                        HA13 == 4 ~ 3,
+                        HA13 == 6 ~ 6),
+    RQS902 = ifelse(QS902 == 4, ha13tmp, QS902),
+    IMC = PESO/(TALLA^2)*10000,
+    OBESIDAD = IMC >= 30, 
+    SOBREPESO = IMC >= 25 & IMC < 30,
+    
+    SEXO = HV104,
+    AREA_RESIDENCIA = HV025, 
+    QUINTIL_BIENESTAR = HV270, 
+    REGION_NATURAL = SHREGION,
+    
+    #de diseño
+    CONGLOMERADO=HV001,
+    ESTRATO=HV022,
+    PONDERACION=HV005/1000000
+  )
+```
+
+```{r}
+final02_db %>% count(HIPERTENSION)
+final02_db %>% count(OBESIDAD)
+```
+
+# setear base según diseño muestral
+
+```{r}
+design_hip <- final02_db %>% 
+  as_factor() %>% #importar variable+value labels
+  #filter(!is.na(OBESIDAD)) %>% #CRITICAL!
+  as_survey_design(id = CONGLOMERADO, 
+                   strata = ESTRATO, 
+                   weights= PONDERACION)
+
+design_obe <- final02_db %>% 
+  as_factor() %>% #importar variable+value labels
+  filter(!is.na(OBESIDAD)) %>% #CRITICAL!
+  as_survey_design(id = CONGLOMERADO, 
+                   strata = ESTRATO, 
+                   weights= PONDERACION)
+
+```
+
+# tablas de prevalencia
+
+```{r,results='asis'}
+hip <- design_hip %>%
+  group_by(QUINTIL_BIENESTAR,SEXO,HIPERTENSION) %>%
+  summarize(proportion = survey_mean(vartype = "ci"),
+            total = survey_total(),
+            n = unweighted(n())) %>% 
+  filter(HIPERTENSION==TRUE) %>% 
+  mutate(HIPERTENSION=case_when(TRUE ~ "Hipertensión")) %>% 
+  rename("enf"=HIPERTENSION)
+
+hip %>% 
+  select(QUINTIL_BIENESTAR,SEXO,starts_with("prop")) %>% 
+  mutate(proportion=proportion*100,
+         proportion_low=proportion_low*100,
+         proportion_upp=proportion_upp*100) %>% 
+  mutate_if(is.numeric, round, 1) %>% 
+  knitr::kable()
+```
+
+```{r}
+obe <- design_obe %>%
+  group_by(QUINTIL_BIENESTAR,SEXO,OBESIDAD) %>%
+  summarize(proportion = survey_mean(vartype = "ci"),
+            total = survey_total(),
+            n = unweighted(n())) %>% 
+  filter(OBESIDAD==TRUE) %>% 
+  mutate(OBESIDAD=case_when(TRUE ~ "Obesidad")) %>% 
+  rename("enf"=OBESIDAD)
+
+obe %>% 
+  select(QUINTIL_BIENESTAR,SEXO,starts_with("prop")) %>% 
+  mutate(proportion=proportion*100,
+         proportion_low=proportion_low*100,
+         proportion_upp=proportion_upp*100) %>% 
+  mutate_if(is.numeric, round, 1) %>% 
+  knitr::kable()
+```
+
+# grafico: cronicas
+
+```{r,fig.height=4,fig.width=5,fig.align='center'}
+union_all(hip,obe) %>% 
+  mutate(SEXO=fct_rev(SEXO)) %>% 
+  ggplot(aes(x = QUINTIL_BIENESTAR,
+             y = proportion,
+             colour=SEXO)) +
+  geom_point(position=position_dodge(width=0.5)) +
+  geom_errorbar(aes(ymin=proportion_low,ymax=proportion_upp),
+                position=position_dodge(width=0.5),
+                width=.2) +
+  facet_grid(~enf) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1),limits = c(0,0.35)) +
+  labs(title = "Enfermedades crónicas (ENDES, 2018)",
+       subtitle = "Según sexo y quintil de bienestar",
+       colour="Sexo",
+       x = "Quintil de bienestar", 
+       y = "Prevalencia")
+#ggsave("figure/fig04-cronica-quintil_sexo.png",width = 5,height = 4)
+```
+

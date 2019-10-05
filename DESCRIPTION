@@ -19,3 +19,7 @@ Depends:
   stringr (>= 1.0),
   labelled (>= 2.0)
 RoxygenNote: 6.1.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
