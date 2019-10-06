@@ -2,7 +2,9 @@
 title: "endespe_v01"
 author: "Andree Valle Campos"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{endespe_v01}
   %\VignetteEngine{knitr::rmarkdown}
@@ -12,6 +14,8 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
   comment = "#>"
 )
 ```
@@ -25,7 +29,9 @@ library(tidyverse)
 theme_set(theme_bw())
 ```
 
-# importar base de datos
+# ENDES.PE
+
+## importar base de datos
 
 ```{r}
 year <- 2018
@@ -50,7 +56,7 @@ anemia <- consulta_endes(periodo = year, codigo_modulo = 74, base = "RECH6", gua
 
 ```
 
-# generar diccionarios de variables
+## generar diccionarios de variables
 
 ```{r}
 diccionario_encuesta(hogar)
@@ -62,7 +68,7 @@ diccionario_encuesta(hogar)
 # diccionario_encuesta(mujer)
 ```
 
-# unir bases
+## unir bases
 
 ```{r}
 # unimos base de personas ("individual")
@@ -78,7 +84,7 @@ union_vivienda <- unir_endes(base1 = hogar,
              tipo_union = "hogar")
 ```
 
-# crear cronicas
+## crear cronicas
 
 ```{r}
 union_individuo %>% count(QSRESINF)
@@ -130,7 +136,9 @@ final02_db %>% count(HIPERTENSION)
 final02_db %>% count(OBESIDAD)
 ```
 
-# setear base según diseño muestral
+# srvyr
+
+## setear base según diseño muestral
 
 ```{r}
 design_hip <- final02_db %>% 
@@ -149,7 +157,7 @@ design_obe <- final02_db %>%
 
 ```
 
-# tablas de prevalencia
+## tablas de prevalencia
 
 ```{r,results='asis'}
 hip <- design_hip %>%
@@ -189,7 +197,7 @@ obe %>%
   knitr::kable()
 ```
 
-# grafico: cronicas
+## grafico: cronicas
 
 ```{r,fig.height=4,fig.width=5,fig.align='center'}
 union_all(hip,obe) %>% 
