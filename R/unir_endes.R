@@ -2,7 +2,7 @@
 #'
 #' @description Funcion para unir bases de datos de la ENDES
 #'
-#' @param x,y, tipo de union
+#' @param base1,base2,tipo_union
 #'
 #' @return Data.Frame
 #'
@@ -48,6 +48,6 @@ unir_endes <- function(base1, base2, tipo_union = "individual") {
   }
   
   else {
-    print("tipo_union inválida, ingrese 'individual' u 'hogar'")
+    print("tipo_union invalida, ingrese 'individual' u 'hogar'")
   }
 }

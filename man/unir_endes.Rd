@@ -7,7 +7,7 @@
 unir_endes(base1, base2, tipo_union = "individual")
 }
 \arguments{
-\item{x, y, }{tipo de union}
+\item{base1, base2, tipo_union}{}
 }
 \value{
 Data.Frame

@@ -9,9 +9,18 @@ License: GNU GPL V3
 Encoding: UTF-8
 LazyData: false
 Imports:
-  haven (>= 2.0),
-  stringr (>= 1.0)
+  tidyverse (>= 1.0),
+  haven (>= 2.0), 
+  stringr (>= 1.0),
+  labelled (>= 2.0)
 Depends:
+  tidyverse (>= 1.0),
   haven (>= 2.0),
-  stringr (>= 1.0)
+  stringr (>= 1.0),
+  labelled (>= 2.0)
 RoxygenNote: 6.1.1
+Suggests: 
+    knitr,
+    rmarkdown,
+    srvyr
+VignetteBuilder: knitr
