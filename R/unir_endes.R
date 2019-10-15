@@ -39,6 +39,14 @@ unir_endes <- function(base1, base2, tipo_union = "individual") {
     base2 <- rename(base2, QSNUMERO = HC0)
   }
   
+  if("HA0"  %in% names(base1)) {
+    base1 <- rename(base1, QSNUMERO = HA0)
+  }
+  
+  if("HA0"  %in% names(base2)) {
+    base2 <- rename(base2, QSNUMERO = HA0)
+  }
+  
   if(tipo_union == "individual")  {
     left_join(base1,base2, by = c("HHID","QSNUMERO"))
   } 
