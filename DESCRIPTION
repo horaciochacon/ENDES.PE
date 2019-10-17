@@ -1,26 +1,27 @@
 Package: ENDES.PE
 Type: Package
-Title: Importador de Base de Datos ENDES - PERU (ES)
+Title: ENDES.PE: Utilidades para el manejo de encuestas poblacionales (Perú)
 Version: 0.2.0
 Author: Horacio Chacón-Torrico
 Maintainer: Horacio Chacón-Torrico <horaciochacon89@gmail.com>
 Description: Paquete con una serie de funciones utiles para manipular, extraer y descargar la base de datos de la Encuesta Nacional Demográfica y de Salud Familiar.
-License: GNU GPL V3
+License: GPL-3
 Encoding: UTF-8
 LazyData: false
 Imports:
-  tidyverse (>= 1.0),
   haven (>= 2.0), 
+  labelled (>= 2.0),
   stringr (>= 1.0),
-  labelled (>= 2.0)
-Depends:
-  tidyverse (>= 1.0),
-  haven (>= 2.0),
-  stringr (>= 1.0),
-  labelled (>= 2.0)
+  magrittr (>= 1.0),
+  dplyr(>= 0.5),
+  sjlabelled(>= 0.5),
+  rlang(>= 0.2)
 RoxygenNote: 6.1.1
 Suggests: 
     knitr,
     rmarkdown,
-    srvyr
+    srvyr,
+    scales,
+    kableExtra,
+    tidyverse
 VignetteBuilder: knitr
