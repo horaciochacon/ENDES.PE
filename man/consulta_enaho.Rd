@@ -8,7 +8,17 @@ consulta_enaho(periodo, codigo_modulo, base, guardar = FALSE,
   ruta = "", codificacion = NULL)
 }
 \arguments{
-\item{periodo, codigo_modulo, base, guardar, ruta, codificacion}{}
+\item{periodo}{Año de la encuesta}
+
+\item{codigo_modulo}{Código del módulo}
+
+\item{base}{Nombre de base de datos}
+
+\item{guardar}{Logical}
+
+\item{ruta}{Ruta para guardar archivo}
+
+\item{codificacion}{Codificación (UTF-8, latin1, etc.)}
 }
 \value{
 archivo .sav o Data Frame (Segun parametro guardar)
