@@ -62,7 +62,7 @@ Para mayor información revisar la documentación de la ENDES en la página de I
 ## Contacto
 
 * Horacio Chacón-Torrico
-* horacio.chacon.t@upch.pe
+* horacio.chacon.t@upch.pe | hchaconto@ucientifica.edu.pe
 
 
 
