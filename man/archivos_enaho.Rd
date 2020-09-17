@@ -7,7 +7,9 @@
 archivos_enaho(periodo, codigo_modulo)
 }
 \arguments{
-\item{periodo, codigo_modulo}{}
+\item{periodo}{Año de la encuesta}
+
+\item{codigo_modulo}{Código del módulo}
 }
 \value{
 tibble

@@ -8,7 +8,17 @@ consulta_endes(periodo, codigo_modulo, base, guardar = FALSE,
   ruta = "", codificacion = NULL)
 }
 \arguments{
-\item{periodo, codigo_modulo, base, guardar, ruta, codificacion}{}
+\item{periodo}{Año de la encuesta}
+
+\item{codigo_modulo}{Código del módulo}
+
+\item{base}{Nombre de base de datos}
+
+\item{guardar}{Logical}
+
+\item{ruta}{Ruta para guardar archivo}
+
+\item{codificacion}{Codificación (UTF-8, latin1, etc.)}
 }
 \value{
 archivo .sav o Data Frame (Segun parametro guardar)
@@ -17,6 +27,7 @@ archivo .sav o Data Frame (Segun parametro guardar)
 Funcion para extraer bases de datos de la Encuesta Nacional Demografica y de Salud familiar.
 }
 \examples{
-consulta_endes(periodo = 2012,codigo_modulo = '64',base = 'RECH1', guardar = FALSE)
+consulta_endes(periodo = 2012,codigo_modulo = '64',base = 'RECH1', 
+guardar = FALSE, codificacion = "UTF-8")
 
 }

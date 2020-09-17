@@ -2,7 +2,8 @@
 #'
 #' @description Funcion para listar archivos disponibles en cada módulo por periodo de la base de datos de la ENDES o ENAHO.
 #'
-#' @param periodo,codigo_modulo
+#' @param periodo Año de la encuesta
+#' @param codigo_modulo Código del módulo
 #'
 #' @return tibble
 #'
@@ -30,10 +31,10 @@ archivos_endes <- function(periodo, codigo_modulo) {
   url <- paste(ruta_base,codigo_encuesta,modulo,sep = "")
   
   # Descargamos el archivo
-  download.file(url,temp)
+  utils::download.file(url,temp)
   
   # Listamos los archivos descargados y seleccionamos la base elegida
-  archivos <- unzip(temp,list = T)
+  archivos <- utils::unzip(temp,list = T)
   
   return(archivos)
   

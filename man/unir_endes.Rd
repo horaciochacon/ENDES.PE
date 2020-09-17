@@ -7,7 +7,11 @@
 unir_endes(base1, base2, tipo_union = "individual")
 }
 \arguments{
-\item{base1, base2, tipo_union}{}
+\item{base1}{Base Endes o Enaho}
+
+\item{base2}{Base Endes o Enaho}
+
+\item{tipo_union}{Tipo de unión (Hogar o Individual)}
 }
 \value{
 Data.Frame
@@ -16,5 +20,13 @@ Data.Frame
 Funcion para unir bases de datos de la ENDES
 }
 \examples{
+
+persona   <- consulta_endes(periodo = 2017, codigo_modulo = 64, 
+base = "RECH1", guardar = FALSE, codificacion = "latin1")
+
+salud     <- consulta_endes(periodo = 2017, codigo_modulo = 414, 
+base = "CSALUD01", guardar = FALSE, codificacion = "latin1")
+
+unir_endes(base1 = persona, base2 = salud, tipo_union = "individual")
 
 }

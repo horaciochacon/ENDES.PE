@@ -7,7 +7,7 @@
 diccionario_encuesta(base_endes)
 }
 \arguments{
-\item{base_endes}{}
+\item{base_endes}{Base Endes o Enaho}
 }
 \value{
 tibble
@@ -17,10 +17,13 @@ Funcion para generar diccionario de variables con las bases de datos de la ENDES
 }
 \examples{
 
-endes <- consulta_endes(periodo = 2012,codigo_modulo = '64',base = 'RECH1', guardar = F)
+endes <- consulta_endes(periodo = 2012,codigo_modulo = '64',
+base = 'RECH1', guardar = FALSE, codificacion = "UTF-8")
 diccionario_encuesta(base_endes=endes)
 
-enaho <- consulta_enaho(periodo = 2017, codigo_modulo = "01", base = "Enaho01-2017-100", guardar = FALSE)
+enaho <- consulta_enaho(periodo = 2017, codigo_modulo = "01", 
+base = "Enaho01-2017-100", guardar = FALSE, codificacion = "latin1")
+
 diccionario_encuesta(base_endes=enaho)
 
 }

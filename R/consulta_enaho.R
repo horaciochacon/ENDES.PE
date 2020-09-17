@@ -2,7 +2,12 @@
 #'
 #' @description Funcion para extraer bases de datos de la Encuesta Nacional de Hogares.
 #'
-#' @param periodo,codigo_modulo,base,guardar,ruta,codificacion
+#' @param periodo Año de la encuesta
+#' @param codigo_modulo Código del módulo
+#' @param base Nombre de base de datos
+#' @param guardar Logical 
+#' @param ruta Ruta para guardar archivo
+#' @param codificacion Codificación (UTF-8, latin1, etc.)
 #'
 #' @return archivo .sav o Data Frame (Segun parametro guardar)
 #'
@@ -39,25 +44,21 @@ consulta_enaho <- function(periodo, codigo_modulo, base, guardar = FALSE, ruta =
   url <- paste(ruta_base,codigo_encuesta,modulo,sep = "")
   
   # Descargamos el archivo
-  download.file(url,temp)
+  utils::download.file(url,temp)
   
   # Listamos los archivos descargados y seleccionamos la base elegida
-  archivos <- unzip(temp,list = T)
+  archivos <- utils::unzip(temp,list = T)
   archivos <- archivos[stringr::str_detect(archivos$Name, paste0(base,"\\.")) == TRUE,]
   
   # Elegimos entre guardar los archivos o pasarlos directamente a un objeto
   if(guardar == TRUE) {
-    unzip(temp, files = archivos$Name, exdir = paste(getwd(), "/", ruta, sep = ""))
+    utils::unzip(temp, files = archivos$Name, exdir = paste(getwd(), "/", ruta, sep = ""))
     print(paste("Archivos descargados en: ", getwd(), "/", ruta, sep = ""))
   } 
-  # else if (periodo == 2014) {
-  #   endes <- read_sav(unzip(temp, files = archivos$Name, exdir = tempdir))
-  #   nombres <- toupper(colnames(endes))
-  #   colnames(endes) <- nombres
-  #   endes
-  # } 
   else {
-    endes <- read_sav(unzip(temp, files = archivos$Name, exdir = tempdir), encoding = codificacion)
+    endes <- haven::read_sav(utils::unzip(temp, files = archivos$Name, 
+                                          exdir = tempdir),
+                             encoding = codificacion)
     nombres <- toupper(colnames(endes))
     colnames(endes) <- nombres
     endes
