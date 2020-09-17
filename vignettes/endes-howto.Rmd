@@ -1,23 +1,21 @@
 ---
-title: "endespe_v01"
+title: "endes-howto"
 date: "`r Sys.Date()`"
-output: 
-  rmarkdown::html_vignette:
-    toc: true
-vignette: >
-  %\VignetteIndexEntry{endespe_v01}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
+  comment = "#>",
   warning = FALSE,
-  message = FALSE,
-  comment = "#>"
+  message = FALSE
 )
 ```
+
+```{r setup}
+library(ENDES.PE)
+```
+
 
 # paquetes
 
