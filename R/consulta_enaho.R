@@ -20,7 +20,8 @@ consulta_enaho <- function(periodo, codigo_modulo, base, guardar = FALSE, ruta =
   temp <- tempfile() ; tempdir <- tempdir()
   
   # Genera una matriz con el número identificador de versiones por cada año
-  versiones <- matrix(c(2018, 634, 
+  versiones <- matrix(c(2019, 687, 
+                        2018, 634, 
                         2017,603,
                         2016,546,
                         2015,498,
