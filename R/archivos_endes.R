@@ -19,7 +19,7 @@ archivos_endes <- function(periodo, codigo_modulo) {
   temp <- tempfile() ; tempdir <- tempdir()
   
   # Genera una matriz con el número identificador de versiones por cada año
-  versiones <- matrix(c(2019, 691, 
+  versiones <- matrix(c(2020, 739, 2019, 691,
                         2018, 638, 2017,605,2016,548,2015,504,2014,441,
                         2013,407,2012,323,2011,290,2010,260,
                         2009,238,2008,209,2007,194,2006,183,
