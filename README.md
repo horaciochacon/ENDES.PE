@@ -3,6 +3,7 @@
 <!-- badges: start -->
 [![R build status](https://github.com/horaciochacon/ENDES.PE/workflows/R-CMD-check/badge.svg)](https://github.com/horaciochacon/ENDES.PE/actions)
 [![DOI](https://zenodo.org/badge/149674585.svg)](https://zenodo.org/badge/latestdoi/149674585)
+[![R-CMD-check](https://github.com/horaciochacon/ENDES.PE/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/horaciochacon/ENDES.PE/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 # Paquete de manejo y obtención de información de la Encuesta Demográfica y de Salud Familiar de Perú
